@@ -12,12 +12,9 @@ import { DishService } from '../services/dish.service';
 export class MenuComponent implements OnInit {
 
   dishes! : Dish[] ;
-  selectedDish! : Dish;
+  selectedDish! : Dish; // zeyda 
  
-  onSelect (dish: Dish) {
-    this.selectedDish =  dish ;
-  }
-
+  
   constructor( private dishService : DishService) { }
 
   ngOnInit(): void  {
