@@ -8,6 +8,8 @@ import { LEADERS } from '../shared/leaders';
 export class LeaderService {
 
   constructor() { }
+
+  
   getLeaders():Leader[] {
     return LEADERS ;
   }
