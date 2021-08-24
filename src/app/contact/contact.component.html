@@ -54,7 +54,7 @@
             </p>
             <p>
                 <mat-form-field class="half-width">
-                    <input matInput formControlName="telnum" placeholder="Tel. Number" type="tel" value="55" required>
+                    <input matInput formControlName="telnum" placeholder="Tel. Number" type="tel" required>
                     <mat-error> T. Number is required</mat-error>
 
                 </mat-form-field>
@@ -69,7 +69,9 @@
                     <mat-slide-toggle formControlName="agree">May we contact you?</mat-slide-toggle>
                 </td>
                 <td>
+
                     <mat-select placeholder="How?" formControlName="contacttype" [disabled]="!feedbackForm.value.agree">
+
                         <mat-option *ngFor="let ctype of contactType" [value]="ctype">
                             {{ ctype }}
                         </mat-option>

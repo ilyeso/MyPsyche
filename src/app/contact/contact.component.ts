@@ -27,7 +27,7 @@ export class ContactComponent implements OnInit {
       telnum: [0,Validators.required],
       email: ['',Validators.required],
       agree: false ,
-      contacttype: 'How?',
+      contacttype: '',
       message: ''
     });
   }
@@ -41,7 +41,7 @@ export class ContactComponent implements OnInit {
       telnum: '',
       email: '',
       agree: false,
-      contacttype: 'How?',
+      contacttype: '',
       message: ''
     });
     this.feedbackFormDirective.resetForm();
