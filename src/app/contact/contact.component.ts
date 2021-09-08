@@ -22,7 +22,6 @@ export class ContactComponent implements OnInit {
   feedbackForm!: FormGroup  ;
   feedback!: Feedback;
   errMess!: string;
-  feedbackcopy!: Feedback;
   contactType =ContactType ;
   @ViewChild('fform') feedbackFormDirective!: NgForm ;
 
@@ -129,7 +128,7 @@ export class ContactComponent implements OnInit {
         message: ''
       }) ;
       this.feedbackFormDirective.resetForm();
-    }, 10000);
+    }, 5000);
 
    
   }

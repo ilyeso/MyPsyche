@@ -24,7 +24,8 @@ export class PromotionService {
     .pipe(catchError(this.processHTTPMsgService.handleError)) ;  }
 
   getFeaturedPromotion():Observable <Promotion> {
-    return this.http.get<Promotion[]>(baseURL + 'promotions?featured=true').pipe(map(promo => promo[0]))
+    return this.http.get<Promotion[]>(baseURL + 'promotions?featured=true')
+    .pipe(map(promo => promo[0]))
     .pipe(catchError(this.processHTTPMsgService.handleError)) ;
     }
 }
