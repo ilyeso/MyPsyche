@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { validateBasis } from '@angular/flex-layout';
 import { FormBuilder , FormGroup, NgForm, Validators } from '@angular/forms';
 import { Feedback, ContactType } from '../shared/feedback';
-import { flyInOut } from '../animations/app.animation';
+import { flyInOut,expand } from '../animations/app.animation';
+import { FeedbackService } from '../services/feedback.service';
 
 @Component({
   selector: 'app-contact',
@@ -13,21 +13,26 @@ import { flyInOut } from '../animations/app.animation';
     'style':'display: block;'
   },
   animations:[
-    flyInOut()
+    flyInOut(),
+    expand()
   ]
 })
 export class ContactComponent implements OnInit {
 
   feedbackForm!: FormGroup  ;
   feedback!: Feedback;
+  errMess!: string;
+  feedbackcopy!: Feedback;
   contactType =ContactType ;
   @ViewChild('fform') feedbackFormDirective!: NgForm ;
 
-  constructor( private fb: FormBuilder) {
+  constructor( private fb: FormBuilder,
+    private feedbackservice : FeedbackService) {
     this.createForm();
    }
 
   ngOnInit(): void {
+   
   }
 
   formErrors : any = {
@@ -55,8 +60,14 @@ export class ContactComponent implements OnInit {
     'email': {
       'required':      'Email is required.',
       'email':         'Email not in valid format.'
-    },
+    }
   };
+
+  submitting = false ;
+  submitted = false ;
+  recievedForm !: Feedback ;
+
+
   createForm(){
     this.feedbackForm=this.fb.group( {
       firstname:['',[Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
@@ -94,17 +105,33 @@ export class ContactComponent implements OnInit {
   }
 
   onSubmit(){
+    this.submitting = true ;
     this.feedback = this.feedbackForm.value ;
-    this.feedbackForm.reset( {
-      firstname: '',
-      lastname: '',
-      telnum: '',
-      email: '',
-      agree: false,
-      contacttype: '',
-      message: ''
-    });
-    this.feedbackFormDirective.resetForm();
+    this.feedbackservice.submitFeedback(this.feedback)
+    .subscribe( feedback => {
+      this.feedback=feedback;
+      this.recievedForm=feedback ;
+      this.submitting=false ;
+      this.submitted=true ;
+    },
+    errmess => {this.errMess= <any>errmess ;
+    }) ;
+    console.log(this.feedback) ;
+    setTimeout(() => {
+      this.submitted=false;
+      this.feedbackForm.reset( {
+        firstname: '',
+        lastname: '',
+        telnum: '',
+        email: '',
+        agree: false,
+        contacttype: '',
+        message: ''
+      }) ;
+      this.feedbackFormDirective.resetForm();
+    }, 10000);
+
+   
   }
 
 }
