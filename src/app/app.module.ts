@@ -78,7 +78,7 @@ import { HighlightDirective } from './directives/highlight.directive';
     ReactiveFormsModule,
     HttpClientModule,
     AgmCoreModule.forRoot({
-      apiKey:'AIzaSyBC-1SCfiIFkZ6wnLzj0uV2mxw-zmknaLw'
+      apiKey:'AIzaSyBC'
     })
 
 
