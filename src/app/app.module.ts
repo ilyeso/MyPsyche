@@ -30,6 +30,8 @@ import { HomeComponent } from './home/home.component';
 import { ContactComponent } from './contact/contact.component';
 import { LoginComponent } from './login/login.component';
 import { baseURL } from './shared/baseurl';
+import { AgmCoreModule } from '@agm/core';
+
 
 import { DishService } from './services/dish.service';
 import { PromotionService } from './services/promotion.service';
@@ -74,7 +76,10 @@ import { HighlightDirective } from './directives/highlight.directive';
     MatCheckboxModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AgmCoreModule.forRoot({
+      apiKey:'AIzaSyBC-1SCfiIFkZ6wnLzj0uV2mxw-zmknaLw'
+    })
 
 
   ],

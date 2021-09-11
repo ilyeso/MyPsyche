@@ -19,6 +19,10 @@ import { FeedbackService } from '../services/feedback.service';
 })
 export class ContactComponent implements OnInit {
 
+  lat :number = 35.651483 ;
+  lng: number =10.897201;
+  
+  
   feedbackForm!: FormGroup  ;
   feedback!: Feedback;
   errMess!: string;
